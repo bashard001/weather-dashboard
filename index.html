@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    <!-- Bootstrap CSS CDN  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="weather.css">
+    <style>
+        .card-body a {
+            word-break: break-all;
+        }
+        
+        .articleHeadline {
+            line-height: 1.5;
+        }
+    </style>
+</head>
+​
+<body>
+    <!-- Retrieved data will be dumped here -->
+    <div class="container">
+​
+​
+​
+        <div class="jumbotron" style="background-color: gray ; color: white;">
+            <h1 class="text-center">
+                <strong>
+                    <p> Weather Dashboard</p>
+                </strong>
+            </h1>
+        </div>
+​
+​
+​
+        <!-- Row for Searching Weather Dashboard -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>
+                            <i class="fa fa-list-alt"></i> Search for a City
+                        </strong>
+                    </div>
+                    <div class="card-body">
+                        <!-- Use the search bar to find weather by city name -->
+                                <input type="text" class="form-control" id="get-weather">
+                                <i class="fa fa-search"></i><button type="submit" class="btn btn-default" id="run-search">
+                                    Search</button>
+                        <div class="search-data"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- All weather data will appear here -->
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="weather-container"> WEATHER CONTAINER
+                            <div class="city">CITY</div>
+                            <div class="wind">WIND</div>
+                            <div class="humidity">HUMIDITY</div>
+                            <div class="temp">TEMP</div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="five-day">Five Day</div>
+                    </div>
+​
+                </div>
+​
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="weather.js"></script>
+</body>
+​
+</html>
