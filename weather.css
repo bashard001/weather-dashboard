@@ -1,16 +1,19 @@
 body{
+    padding-top:0px ;
     background-color: #293251;
 }
 
 .container{
     width: 1000px;
     background-color: #FFF;
+
+    height: 50%;
     
     display: block;
     margin: 0 auto;
     
     border-radius: 10px;
-    padding-bottom : 50px;
+    padding: 20px;
 }
 
 .app-title{
@@ -41,9 +44,11 @@ body{
 }
 
 .weather-container{
+    border-radius: 12px;
+    padding: 15px;
     width: 300px;
     height: 260px;
-    background-color: #F4F9FF;
+    background-color: white;
 }
 
 .weather-icon{
@@ -91,7 +96,6 @@ body{
     font-size: 1.2em;
 }
 
-.location{
     
 }
 
