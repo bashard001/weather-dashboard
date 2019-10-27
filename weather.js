@@ -69,10 +69,12 @@ $("button").on("click", function () {
         for (var i = 0; i < response2.list.length; i +=8){
           var nextFive = $(".five")
           var nextFiveCard = $("<div>")
+          nextFiveCard.attr("class", "col-lg-2 style")
           var tempDate =response2.list[i].dt_txt
-          console.log(tempDate.substring(0, 10))
-          nextFiveCard.append($("<h3>" + response2.list[i].main.temp + "</h3>"))
-          nextFiveCard.append($("<h3>" + tempDate.substring(0, 10) + "</h3>"))
+
+          nextFiveCard.append($("<h4>" + 'Date: ' + tempDate.substring(0, 10) + "</h4>"))
+          nextFiveCard.append($("<h5>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h5>"))
+          
           
           nextFive.append(nextFiveCard)
 
