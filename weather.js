@@ -5,43 +5,41 @@ var date = new Date()
 var longitude = "";
 var latitude = "";
 
-function currentlocationWeather(){  
-navigator.geolocation.getCurrentPosition(function(position){
-   longitude = position.coords.longitude;
-   latitude = position.coords.latitude;
-   console.log(longitude)
-   var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
-$.ajax({
-  url: queryURL,
-  method: "GET"
-})
-.then(function(response){
-  console.log(response)
-  var iconcode = response.weather[0].icon;
-      var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+function currentlocationWeather() {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+    console.log(longitude)
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function (response) {
+        console.log(response)
+        var iconcode = response.weather[0].icon;
+        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
-      // Log the queryURL
-      console.log(queryURL);
+        // Log the queryURL
+        console.log(queryURL);
 
-      // Log the resulting object
-      console.log(response);
+        // Log the resulting object
+        console.log(response);
 
-      // Transfer content to HTML
-      var city = $(".city").html("<strong>" + "Current location: " + response.name + "</strong>" 
-      + " (" + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ")") ;
-      city.append(( "<img id='wicon' src='' alt='Weather icon'>"));
-      $(".wind").text("Wind Speed: " + response.wind.speed);
-      $(".humidity").text("Humidity: " + response.main.humidity);
-      $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
-      $('#wicon').attr('src', iconurl);
+        // Transfer content to HTML
+        var city = $(".city").html("<strong>" + "Current location: " + response.name + "</strong>"
+          + " (" + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ")");
+        city.append(("<img id='wicon' src='' alt='Weather icon'>"));
+        $(".wind").text("Wind Speed: " + response.wind.speed);
+        $(".humidity").text("Humidity: " + response.main.humidity);
+        $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
+        $('#wicon').attr('src', iconurl);
 
-})
+      })
 
-});
+  });
 }
 currentlocationWeather()
-
-
 
 
 $("button").on("click", function () {
@@ -70,9 +68,9 @@ $("button").on("click", function () {
       console.log(response);
 
       // Transfer content to HTML
-      var city = $(".city").html("<strong>" + response.name + "</strong>" 
-      + " (" + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ")") ;
-      city.append(( "<img id='wicon' src='' alt='Weather icon'>"));
+      var city = $(".city").html("<strong>" + response.name + "</strong>"
+        + " (" + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ")");
+      city.append(("<img id='wicon' src='' alt='Weather icon'>"));
       $(".wind").text("Wind Speed: " + response.wind.speed);
       $(".humidity").text("Humidity: " + response.main.humidity);
       $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
@@ -89,41 +87,41 @@ $("button").on("click", function () {
       console.log("Temperature (F): " + response.main.temp);
     });
 
-    
-    
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
-    $.ajax({
-      url: queryURL,
-      method: "GET"
+
+
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+    // We store all of the retrieved data inside of an object called "response"
+    .then(function (response2) {
+
+
+      console.log(response2)
+
+      console.log(response2.list.length)
+
+      for (var i = 0; i < response2.list.length; i += 8) {
+        $(".five-day").text("Five day forecast:")
+        var nextFive = $(".five")
+        var nextFiveCard = $("<div>")
+        nextFiveCard.attr("class", "col-lg-2 style")
+        var tempDate = response2.list[i].dt_txt
+
+        nextFiveCard.append($("<h5>" + 'Date: ' + tempDate.substring(0, 10) + "</h5>"))
+        nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h6>"))
+
+
+        nextFive.append(nextFiveCard)
+
+
+
+
+
+      }
+
     })
-      // We store all of the retrieved data inside of an object called "response"
-      .then(function (response2) {
-        
-
-        console.log(response2)
-
-        console.log(response2.list.length)
-
-        for (var i = 0; i < response2.list.length; i +=8){
-          $(".five-day").text("Five day forecast:")
-          var nextFive = $(".five")
-          var nextFiveCard = $("<div>")
-          nextFiveCard.attr("class", "col-lg-2 style")
-          var tempDate =response2.list[i].dt_txt
-
-          nextFiveCard.append($("<h4>" + 'Date: ' + tempDate.substring(0, 10) + "</h4>"))
-          nextFiveCard.append($("<h5>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h5>"))
-          
-          
-          nextFive.append(nextFiveCard)
-
-
-          
-
-
-        }
-
-      })
 })
 
 

@@ -1,7 +1,31 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
 body{
-    padding-top:0px ;
+    height: 100%;
+    margin: 0px;
+    position: relative;
+    padding: 0px ;
     background-color: #293251;
 }
+
+.header{
+    margin-top: 1px;
+    position: relative;
+    width: 100%;
+    top: 0px;
+    padding: 25px;
+    height: 100px;
+    color: #fff;
+    background: #30948D;
+    font-family: New Century Schoolbook, TeX Gyre Schola, serif;
+    margin-bottom: 15px;
+}
+.text-center{
+
+    margin: auto;
+} 
 
 .container{
     width: 1000px;
@@ -16,23 +40,12 @@ body{
     padding: 20px;
 }
 
-.app-title{
-    width: 300px;
-    height: 50px;
-    border-radius: 10px 10px 0 0;
-}
 
 .weather-container{
     border-radius: 12px;
     padding: 15px;
     width: auto;
+
     height: 260px;
     background-color: white;
-}
-
-.style {
-
-    border-radius: 13px;
-    border: solid black;
-    margin: 10px;
 }
