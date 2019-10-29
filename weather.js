@@ -10,8 +10,14 @@ function pastSearchHistory(){
   var pastSearch = localStorage.getItem("pastSearch")
   if (pastSearch !== null){
     city = pastSearch;
-    var reachHistoryList = $("<")
+    var reachHistoryList = $("<div class='historylist'>" + pastSearch + "</div>")
+    $(".search-data").append(reachHistoryList)
 
+      savedHistory = pastSearch.split(",")
+    for (var i = 0; i < savedHistory.length; i++){
+      letsGo.push(savedHistory[i])
+    }
+    
   }
 
 }
@@ -125,12 +131,15 @@ function displayResults(){
 
 }
 
+var letsGo = [];
 
 $("button").on("click", function () {
   var caContent = $("#get-weather")
+  
+  city = caContent.val()
+   console.log(city)
+   letsGo.push(city)
 
-  var letsGo = caContent.val()
-  city = letsGo
 
   localStorage.setItem("pastSearch", letsGo)
 
