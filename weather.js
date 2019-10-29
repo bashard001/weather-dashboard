@@ -5,6 +5,18 @@ var date = new Date()
 var longitude = "";
 var latitude = "";
 
+function pastSearchHistory(){
+
+  var pastSearch = localStorage.getItem("pastSearch")
+  if (pastSearch !== null){
+    city = pastSearch;
+    var reachHistoryList = $("<")
+
+  }
+
+}
+
+
 function currentlocationWeather() {
   navigator.geolocation.getCurrentPosition(function (position) {
     longitude = position.coords.longitude;
@@ -41,12 +53,10 @@ function currentlocationWeather() {
 }
 currentlocationWeather()
 
+pastSearchHistory()
 
-$("button").on("click", function () {
-  var caContent = $("#get-weather")
 
-  var letsGo = caContent.val()
-  city = letsGo
+function displayResults(){
 
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
 
@@ -72,19 +82,10 @@ $("button").on("click", function () {
         + " (" + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ")");
       city.append(("<img id='wicon' src='' alt='Weather icon'>"));
       $(".wind").text("Wind Speed: " + response.wind.speed);
-      $(".humidity").text("Humidity: " + response.main.humidity);
+      $(".humidity").text("Humidity: " + response.main.humidity + "%");
       $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
       $('#wicon').attr('src', iconurl);
 
-
-      // Converts the temp to Kelvin with the below formula
-
-
-
-      // Log the data in the console as well
-      console.log("Wind Speed: " + response.wind.speed);
-      console.log("Humidity: " + response.main.humidity);
-      console.log("Temperature (F): " + response.main.temp);
     });
 
 
@@ -97,31 +98,45 @@ $("button").on("click", function () {
     // We store all of the retrieved data inside of an object called "response"
     .then(function (response2) {
 
-
       console.log(response2)
 
-      console.log(response2.list.length)
+      for (var i = 2; i < response2.list.length; i += 8) {
+        var iconcode2 = response2.list[i].weather[0].icon;
+        var iconurl2 = "http://openweathermap.org/img/w/" + iconcode2 + ".png";
 
-      for (var i = 0; i < response2.list.length; i += 8) {
         $(".five-day").text("Five day forecast:")
         var nextFive = $(".five")
         var nextFiveCard = $("<div>")
-        nextFiveCard.attr("class", "col-lg-2 style")
+        nextFiveCard.attr("class", "col style")
         var tempDate = response2.list[i].dt_txt
 
         nextFiveCard.append($("<h5>" + 'Date: ' + tempDate.substring(0, 10) + "</h5>"))
+        nextFiveCard.append(("<img id='wicon2' src='' alt='Weather icon'>"))
+        $('#wicon2').attr('src', iconurl2)
         nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h6>"))
-
+        nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%" ))
 
         nextFive.append(nextFiveCard)
-
-
-
-
 
       }
 
     })
+
+
+}
+
+
+$("button").on("click", function () {
+  var caContent = $("#get-weather")
+
+  var letsGo = caContent.val()
+  city = letsGo
+
+  localStorage.setItem("pastSearch", letsGo)
+
+  displayResults()
+
+  
 })
 
 
