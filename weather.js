@@ -4,22 +4,29 @@ var city = '';
 var date = new Date()
 var longitude = "";
 var latitude = "";
+var letsGo = [];
 
-function pastSearchHistory(){
+
+function pastSearchHistory() {
 
   var pastSearch = localStorage.getItem("pastSearch")
-  if (pastSearch !== null){
-    city = pastSearch;
-    var reachHistoryList = $("<div class='historylist'>" + pastSearch + "</div>")
-    $(".search-data").append(reachHistoryList)
+  if (pastSearch !== null) {
 
-      savedHistory = pastSearch.split(",")
-    for (var i = 0; i < savedHistory.length; i++){
-      letsGo.push(savedHistory[i])
+    for (var i = 0; i < pastSearch.length; i++) {
+      letsGo = []
+      var savedHistory = pastSearch.split(",").reverse()
+      console.log(savedHistory)
+
+      if (i < 3 && savedHistory[i] !== undefined) {
+        var reachHistoryList = $("<div class='historylist'>" + savedHistory[i] + "</div>")
+
+
+        $(".search-data").append(reachHistoryList)
+
+        letsGo.push(savedHistory[i])
+      }
     }
-    
   }
-
 }
 
 
@@ -27,19 +34,18 @@ function currentlocationWeather() {
   navigator.geolocation.getCurrentPosition(function (position) {
     longitude = position.coords.longitude;
     latitude = position.coords.latitude;
-    console.log(longitude)
+
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
     $.ajax({
       url: queryURL,
       method: "GET"
     })
       .then(function (response) {
-        console.log(response)
+
         var iconcode = response.weather[0].icon;
         var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
-        // Log the queryURL
-        console.log(queryURL);
+
 
         // Log the resulting object
         console.log(response);
@@ -62,7 +68,7 @@ currentlocationWeather()
 pastSearchHistory()
 
 
-function displayResults(){
+function displayResults() {
 
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
 
@@ -77,8 +83,6 @@ function displayResults(){
       var iconcode = response.weather[0].icon;
       var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
-      // Log the queryURL
-      console.log(queryURL);
 
       // Log the resulting object
       console.log(response);
@@ -104,23 +108,24 @@ function displayResults(){
     // We store all of the retrieved data inside of an object called "response"
     .then(function (response2) {
 
-      console.log(response2)
+      var nextFive = $(".five")
+      nextFive.empty()
 
       for (var i = 2; i < response2.list.length; i += 8) {
         var iconcode2 = response2.list[i].weather[0].icon;
         var iconurl2 = "http://openweathermap.org/img/w/" + iconcode2 + ".png";
-
+        console.log(iconcode2)
         $(".five-day").text("Five day forecast:")
-        var nextFive = $(".five")
+
         var nextFiveCard = $("<div>")
         nextFiveCard.attr("class", "col style")
         var tempDate = response2.list[i].dt_txt
 
         nextFiveCard.append($("<h5>" + 'Date: ' + tempDate.substring(0, 10) + "</h5>"))
-        nextFiveCard.append(("<img id='wicon2' src='' alt='Weather icon'>"))
-        $('#wicon2').attr('src', iconurl2)
+        nextFiveCard.append(("<img id='wicon2' src=" + iconurl2 + " alt='Weather icon'>"))
+
         nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h6>"))
-        nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%" ))
+        nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%"))
 
         nextFive.append(nextFiveCard)
 
@@ -131,21 +136,27 @@ function displayResults(){
 
 }
 
-var letsGo = [];
+
 
 $("button").on("click", function () {
   var caContent = $("#get-weather")
-  
+
   city = caContent.val()
-   console.log(city)
-   letsGo.push(city)
+
+  if (letsGo.includes(city)) {
+    localStorage.setItem("pastSearch", letsGo)
+
+  } else {
+    letsGo.push(city)
 
 
-  localStorage.setItem("pastSearch", letsGo)
+    localStorage.setItem("pastSearch", letsGo)
+  }
+  console.log(letsGo)
 
   displayResults()
 
-  
+
 })
 
 
