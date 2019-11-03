@@ -58,3 +58,16 @@ body{
     height: 260px;
     background-color: white;
 }
+.historylist {
+    border: solid gray 1px;
+    margin: 5px;
+    padding-left: 5px;
+
+}
+
+.historylist:hover{
+
+    background-color: rgb(0, 162, 255);
+    color: #FFF;
+    cursor: pointer;
+}

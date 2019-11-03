@@ -8,17 +8,17 @@ var letsGo = [];
 
 
 function pastSearchHistory() {
-
+    letsGo = []
   var pastSearch = localStorage.getItem("pastSearch")
   if (pastSearch !== null) {
 
     for (var i = 0; i < pastSearch.length; i++) {
-      letsGo = []
+      
       var savedHistory = pastSearch.split(",").reverse()
       console.log(savedHistory)
 
       if (i < 3 && savedHistory[i] !== undefined) {
-        var reachHistoryList = $("<div class='historylist'>" + savedHistory[i] + "</div>")
+        var reachHistoryList = $("<div class='historylist' city=" + savedHistory[i].replace(" ", "-")+ ">" + savedHistory[i] + "</div>")
 
 
         $(".search-data").append(reachHistoryList)
@@ -44,7 +44,6 @@ function currentlocationWeather() {
 
         var iconcode = response.weather[0].icon;
         var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-
 
 
         // Log the resulting object
@@ -132,8 +131,6 @@ function displayResults() {
       }
 
     })
-
-
 }
 
 
@@ -151,13 +148,29 @@ $("button").on("click", function () {
 
 
     localStorage.setItem("pastSearch", letsGo)
+    var addHistoryList = $("<div class='historylist' city=" + city.replace(" ", "-") + ">" + city + "</div>")
+
+
+        $(".search-data").append(addHistoryList)
   }
   console.log(letsGo)
 
+  
+  
+
   displayResults()
+  clickToGet()
 
 
 })
 
+ function clickToGet() { $(".historylist").on("click", function(){
 
+    var clickCity = $(this).attr("city")
+    city = clickCity.replace("-", " ")
+    displayResults()
+
+  })
+}
+clickToGet()
 
