@@ -32,7 +32,7 @@ body{
 }
 
 .container{
-    width: 1000px;
+    max-width: 90vw;
     background-color: #FFF;
 
     height: 50%;
