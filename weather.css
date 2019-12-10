@@ -24,8 +24,7 @@ body{
     margin-bottom: 20px;
 }
 .text-center{
-
-    margin: auto;
+    margin-top: 8px;
 } 
 #start{
     
@@ -35,6 +34,7 @@ body{
 .start p{
     margin: auto;
     text-align: center;
+    font-weight: 500;
 }
 .sds{
     margin-bottom: 15px;
