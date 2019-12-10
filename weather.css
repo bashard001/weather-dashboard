@@ -27,6 +27,15 @@ body{
 
     margin: auto;
 } 
+#start{
+    
+    background-color: rgba(255, 255, 255, .8);
+    margin-bottom: 15px;
+}
+.start p{
+    margin: auto;
+    text-align: center;
+}
 .sds{
     margin-bottom: 15px;
 }
@@ -73,4 +82,10 @@ body{
     background-color: rgb(0, 162, 255);
     color: #FFF;
     cursor: pointer;
+}
+.row{
+    text-align: center;
+}
+div.row.start{
+    text-align: center;
 }
