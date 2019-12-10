@@ -7,7 +7,8 @@ body{
     margin: 0px;
     position: relative;
     padding: 0px ;
-    background-color: #293251;
+    background-image: url("weatherd.png");
+    background-size: cover;
 }
 
 .header{
@@ -16,11 +17,11 @@ body{
     width: 100%;
     top: 0px;
     padding: 25px;
-    height: 100px;
+    height: 120px;
     color: #fff;
-    background: #30948D;
+    background: rgba(0,191,255,.5);
     font-family: New Century Schoolbook, TeX Gyre Schola, serif;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .text-center{
 
@@ -61,7 +62,9 @@ body{
 .historylist {
     border: solid gray 1px;
     margin: 5px;
-    padding-left: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: skyblue;
 
 }
 
