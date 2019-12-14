@@ -12,11 +12,11 @@ $(".temptype").on("click", function (){
   switch (tempkind){
     case "F":
       tempkind = "C";
-      $(".temptype").html("<p>" + "Change to F" + "</p>")
+      $(".temptype").html("<p>" + "Change to &#176F" + "</p>")
       break;
       case "C":
         tempkind = "F";
-        $(".temptype").html("<p>" + "Change to C" + "</p>")
+        $(".temptype").html("<p>" + "Change to &#176C" + "</p>")
         break;
 
   } 
@@ -83,9 +83,9 @@ function currentlocationWeather() {
         else{$(".temp").text("Temperature (C) " + (response.main.temp - 273.15).toFixed(2));}
         $('#wicon').attr('src', iconurl);
         if (tempkind == "F"){
-        $(".temptype").html("<p>" + "Change to C" + "</p>")}
+        $(".temptype").html("<p>" + "Change to &#176C" + "</p>")}
         else {
-          $(".temptype").html("<p>" + "Change to F" + "</p>")
+          $(".temptype").html("<p>" + "Change to &#176F" + "</p>")
 
         }
 
@@ -158,8 +158,8 @@ function displayResults() {
         nextFiveCard.append($("<h5>" + 'Date: ' + tempDate.substring(0, 10) + "</h5>"))
         nextFiveCard.append(("<img id='wicon2' src=" + iconurl2 + " alt='Weather icon'>"))
         if (tempkind == "F"){
-          nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + " F" + "</h6>"))}
-          else{nextFiveCard.append($("<h6>" + "Temp: " + (response2.list[i].main.temp - 273.15).toFixed(2) + " C" + "</h6>"))}
+          nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + " &#176F" + "</h6>"))}
+          else{nextFiveCard.append($("<h6>" + "Temp: " + (response2.list[i].main.temp - 273.15).toFixed(2) + " &#176C" + "</h6>"))}
 
         
         nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%"))
