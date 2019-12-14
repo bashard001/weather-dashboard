@@ -100,6 +100,8 @@ pastSearchHistory()
 
 function displayResults() {
 
+  if (city !== ""){
+
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
 
   // Here we run our AJAX call to the OpenWeatherMap API
@@ -156,8 +158,8 @@ function displayResults() {
         nextFiveCard.append($("<h5>" + 'Date: ' + tempDate.substring(0, 10) + "</h5>"))
         nextFiveCard.append(("<img id='wicon2' src=" + iconurl2 + " alt='Weather icon'>"))
         if (tempkind == "F"){
-          nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h6>"))}
-          else{nextFiveCard.append($("<h6>" + "Temp: " + (response2.list[i].main.temp - 273.15).toFixed(2) + "</h6>"))}
+          nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + " F" + "</h6>"))}
+          else{nextFiveCard.append($("<h6>" + "Temp: " + (response2.list[i].main.temp - 273.15).toFixed(2) + " C" + "</h6>"))}
 
         
         nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%"))
@@ -167,7 +169,7 @@ function displayResults() {
       }
 
     })
-}
+}}
 
 
 
@@ -176,7 +178,7 @@ $("button").on("click", function () {
 
   city = caContent.val()
 
-  if (letsGo.includes(city)) {
+  if (letsGo.includes(city) || city == "") {
     localStorage.setItem("pastSearch", letsGo)
 
   } else {
