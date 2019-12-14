@@ -5,6 +5,28 @@ var date = new Date()
 var longitude = "";
 var latitude = "";
 var letsGo = [];
+var tempkind = "F";
+
+
+$(".temptype").on("click", function (){ 
+  switch (tempkind){
+    case "F":
+      tempkind = "C";
+      $(".temptype").html("<p>" + "Change to F" + "</p>")
+      break;
+      case "C":
+        tempkind = "F";
+        $(".temptype").html("<p>" + "Change to C" + "</p>")
+        break;
+
+  } 
+  if (city == ""){
+  currentlocationWeather()}
+  else{
+    displayResults()
+  }
+
+})
 
 
 function pastSearchHistory() {
@@ -34,6 +56,7 @@ function currentlocationWeather() {
   navigator.geolocation.getCurrentPosition(function (position) {
     longitude = position.coords.longitude;
     latitude = position.coords.latitude;
+    
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
     $.ajax({
@@ -55,8 +78,16 @@ function currentlocationWeather() {
         city.append(("<img id='wicon' src='' alt='Weather icon'>"));
         $(".wind").text("Wind Speed: " + response.wind.speed);
         $(".humidity").text("Humidity: " + response.main.humidity);
-        $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
+        if (tempkind == "F"){
+        $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));}
+        else{$(".temp").text("Temperature (C) " + (response.main.temp - 273.15).toFixed(2));}
         $('#wicon').attr('src', iconurl);
+        if (tempkind == "F"){
+        $(".temptype").html("<p>" + "Change to C" + "</p>")}
+        else {
+          $(".temptype").html("<p>" + "Change to F" + "</p>")
+
+        }
 
       })
 
@@ -92,7 +123,9 @@ function displayResults() {
       city.append(("<img id='wicon' src='' alt='Weather icon'>"));
       $(".wind").text("Wind Speed: " + response.wind.speed);
       $(".humidity").text("Humidity: " + response.main.humidity + "%");
-      $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
+      if (tempkind == "F"){
+        $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));}
+        else{$(".temp").text("Temperature (C) " + (response.main.temp - 273.15).toFixed(2));}
       $('#wicon').attr('src', iconurl);
 
     });
@@ -122,8 +155,11 @@ function displayResults() {
 
         nextFiveCard.append($("<h5>" + 'Date: ' + tempDate.substring(0, 10) + "</h5>"))
         nextFiveCard.append(("<img id='wicon2' src=" + iconurl2 + " alt='Weather icon'>"))
+        if (tempkind == "F"){
+          nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h6>"))}
+          else{nextFiveCard.append($("<h6>" + "Temp: " + (response2.list[i].main.temp - 273.15).toFixed(2) + "</h6>"))}
 
-        nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + "</h6>"))
+        
         nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%"))
 
         nextFive.append(nextFiveCard)

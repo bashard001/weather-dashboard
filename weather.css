@@ -59,6 +59,15 @@ body{
 .five-day{
     margin-left: 15px;
 }
+.temptype{
+    background-color: rgb(136, 136, 206);
+    cursor: pointer;
+    padding: 8px 6px;
+    border-radius: 15px;
+}
+.temptype p{
+    margin: 0px;
+}
 
 .weather-container{
     border-radius: 12px;
