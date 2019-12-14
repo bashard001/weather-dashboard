@@ -41,7 +41,7 @@ body{
 }
 
 .container{
-    max-width: 90vw;
+    max-width: 85vw;
     background-color: #FFF;
 
     height: 50%;
@@ -64,6 +64,7 @@ body{
     cursor: pointer;
     padding: 8px 6px;
     border-radius: 15px;
+    margin: 5px;
 }
 .temptype p{
     margin: 0px;
