@@ -171,9 +171,13 @@ function displayResults() {
     })
 }}
 
+$(document).on('keypress',function(e) {
+  if(e.which == 13) {
+      doSearch();
+  }
+});
 
-
-$("button").on("click", function () {
+function doSearch (){
   var caContent = $("#get-weather")
 
   city = caContent.val()
@@ -199,8 +203,9 @@ $("button").on("click", function () {
   displayResults()
   clickToGet()
 
+}
 
-})
+$("button").on("click", doSearch)
 
  function clickToGet() { $(".historylist").on("click", function(){
 
