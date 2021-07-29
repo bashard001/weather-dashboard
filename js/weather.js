@@ -1,5 +1,4 @@
 var apiKey = "03e24d7d731fc83efc64f5aa4eb937c1";
-
 var city = '';
 var date = new Date()
 var longitude = "";
@@ -18,7 +17,6 @@ $(".temptype").on("click", function () {
       tempkind = "F";
       $(".temptype").html("<p>" + "Change to &#176C" + "</p>")
       break;
-
   }
   if (city == "") {
     currentlocationWeather()
@@ -26,7 +24,6 @@ $(".temptype").on("click", function () {
   else {
     displayResults()
   }
-
 })
 
 
@@ -55,9 +52,9 @@ function pastSearchHistory() {
 
 function currentlocationWeather() {
   navigator.geolocation.getCurrentPosition(function (position) {
+    //pulling client location
     longitude = position.coords.longitude;
     latitude = position.coords.latitude;
-
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
     $.ajax({
@@ -68,10 +65,6 @@ function currentlocationWeather() {
 
         var iconcode = response.weather[0].icon;
         var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-
-
-        // Log the resulting object
-        console.log(response);
 
         // Transfer content to HTML
         var city = $(".city").html("<strong>" + "Current location: " + response.name + "</strong>"
@@ -89,11 +82,8 @@ function currentlocationWeather() {
         }
         else {
           $(".temptype").html("<p>" + "Change to &#176F" + "</p>")
-
         }
-
       })
-
   });
 }
 currentlocationWeather()
@@ -118,10 +108,6 @@ function displayResults() {
         var iconcode = response.weather[0].icon;
         var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
-
-        // Log the resulting object
-        console.log(response);
-
         // Transfer content to HTML
         var city = $(".city").html("<strong>" + response.name + "</strong>"
           + " (" + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ")");
@@ -137,7 +123,7 @@ function displayResults() {
       });
 
 
-
+// query weather data
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
     $.ajax({
       url: queryURL,
@@ -160,23 +146,24 @@ function displayResults() {
           var tempDate = response2.list[i].dt_txt
 
           nextFiveCard.append($("<h5>" + 'Date: ' + tempDate.substring(0, 10) + "</h5>"))
+
           nextFiveCard.append(("<img id='wicon2' src=" + iconurl2 + " alt='Weather icon'>"))
+
           if (tempkind == "F") {
             nextFiveCard.append($("<h6>" + "Temp: " + ((response2.list[i].main.temp - 273.15) * 1.80 + 32).toFixed(2) + " &#176F" + "</h6>"))
           }
           else { nextFiveCard.append($("<h6>" + "Temp: " + (response2.list[i].main.temp - 273.15).toFixed(2) + " &#176C" + "</h6>")) }
-
 
           nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%"))
 
           nextFive.append(nextFiveCard)
 
         }
-
       })
   }
 }
 
+// when keypressing enter; searching and displaying searched city weather
 $(document).on('keypress', function (e) {
   if (e.which == 13) {
     doSearch();
@@ -194,23 +181,18 @@ function doSearch() {
   } else {
     letsGo.push(city)
 
-
     localStorage.setItem("pastSearch", letsGo)
     var addHistoryList = $("<div class='historylist' city=" + city.replace(" ", "-") + ">" + city + "</div>")
-
 
     $(".search-data").append(addHistoryList)
   }
   console.log(letsGo)
 
-
-
-
   displayResults()
   clickToGet()
-
 }
 
+// searching and displaying searched city weather
 $("button").on("click", doSearch)
 
 function clickToGet() {
@@ -223,4 +205,3 @@ function clickToGet() {
   })
 }
 clickToGet()
-
