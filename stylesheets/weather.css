@@ -29,7 +29,7 @@ body{
 #start{
     
     background-color: rgba(255, 255, 255, .8);
-    margin-bottom: 15px;
+ 
 }
 .start p{
     margin: auto;
@@ -90,4 +90,8 @@ h1{
 }
 div.row.start{
     text-align: center;
+}
+
+.card {
+    border-radius: 10px;
 }
