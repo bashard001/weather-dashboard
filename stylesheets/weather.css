@@ -48,6 +48,19 @@ h1{
     width: auto;
     height: 260px;
     background-color: white;
+    
+}
+@media (min-width:991px) {
+    .weather-container{
+      margin-left: 10px;  
+    }
+    
+}
+@media (max-width:991px) {
+    .weather-container{
+      margin-top: 10px;  
+    }
+    
 }
 .historylist {
     margin: 5px;
