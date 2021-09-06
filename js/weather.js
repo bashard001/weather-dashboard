@@ -8,14 +8,15 @@ var tempkind = "F";
 
 
 $(".temptype").on("click", function () {
+  console.log(city)
   switch (tempkind) {
     case "F":
       tempkind = "C";
-      $(".temptype").html("<p class='btn btn-primary'>" + "Change to &#176F" + "</p>")
+      $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176F" + "</p>")
       break;
     case "C":
       tempkind = "F";
-      $(".temptype").html("<p class='btn btn-primary'>" + "Change to &#176C" + "</p>")
+      $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176C" + "</p>")
       break;
   }
   if (city == "") {
@@ -74,10 +75,10 @@ function currentlocationWeather() {
         $('#wicon').attr('src', iconurl);
 
         if (tempkind == "F") {
-          $(".temptype").html("<p class='btn btn-primary'>" + "Change to &#176C" + "</p>")
+          $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176C" + "</p>")
         }
         else {
-          $(".temptype").html("<p class='btn btn-primary'>" + "Change to &#176F" + "</p>")
+          $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176F" + "</p>")
         }
       })
   });
