@@ -1,27 +1,23 @@
 *, *::after, *::before{
     box-sizing: border-box;
 }
-
 body{
     height: 100%;
-    margin: 0px;
     position: relative;
-    padding: 0px ;
     background-image: url("weatherd.png");
     background-size: cover;
 }
-
 .header{
-    margin-top: 1px;
     position: relative;
     width: 100%;
     top: 0px;
     padding: 25px;
-    height: 120px;
+    min-height: 10vh;
     color: #fff;
     background: rgba(0,191,255,.5);
     font-family: New Century Schoolbook, TeX Gyre Schola, serif;
     margin-bottom: 20px;
+    align-items: center;
 }
 .text-center{
     margin-top: 8px;
@@ -50,16 +46,6 @@ body{
 h1{
     font-family: "Lobster", cursive; 
     text-shadow: 4px 4px 4px #aaa;
-}
-.temptype{
-    background-color: rgb(136, 136, 206);
-    cursor: pointer;
-    padding: 8px 6px;
-    border-radius: 15px;
-    margin: 5px;
-}
-.temptype p{
-    margin: 0px;
 }
 
 .weather-container{
