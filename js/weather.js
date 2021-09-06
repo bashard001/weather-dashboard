@@ -71,11 +71,13 @@ function currentlocationWeather() {
         city.append(("<img id='wicon' src='' alt='Weather icon'>"));
         $(".wind").text("Wind Speed: " + response.wind.speed);
         $(".humidity").text("Humidity: " + response.main.humidity);
+
         if (tempkind == "F") {
           $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
         }
         else { $(".temp").text("Temperature (C) " + (response.main.temp - 273.15).toFixed(2)); }
         $('#wicon').attr('src', iconurl);
+
         if (tempkind == "F") {
           $(".temptype").html("<p class='btn btn-primary'>" + "Change to &#176C" + "</p>")
         }
@@ -103,7 +105,6 @@ function displayResults() {
     })
       // We store all of the retrieved data inside of an object called "response"
       .then(function (response) {
-
         var iconcode = response.weather[0].icon;
         var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
@@ -113,6 +114,7 @@ function displayResults() {
         city.append(("<img id='wicon' src='' alt='Weather icon'>"));
         $(".wind").text("Wind Speed: " + response.wind.speed);
         $(".humidity").text("Humidity: " + response.main.humidity + "%");
+        
         if (tempkind == "F") {
           $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
         }
