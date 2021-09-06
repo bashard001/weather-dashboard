@@ -30,24 +30,19 @@ function pastSearchHistory() {
   letsGo = []
   var pastSearch = localStorage.getItem("pastSearch")
   if (pastSearch !== null) {
+    console.log(pastSearch)
+    var savedHistory = pastSearch.split(",").reverse()
 
-    for (var i = 0; i < pastSearch.length; i++) {
-
-      var savedHistory = pastSearch.split(",").reverse()
+    for (var i = 0; i < savedHistory.length; i++) {
       console.log(savedHistory)
-
       if (i < 3 && savedHistory[i] !== undefined) {
         var reachHistoryList = $("<div class='historylist' city=" + savedHistory[i].replace(" ", "-") + ">" + savedHistory[i] + "</div>")
-
-
         $(".search-data").append(reachHistoryList)
-
         letsGo.push(savedHistory[i])
       }
     }
   }
 }
-
 
 function currentlocationWeather() {
   navigator.geolocation.getCurrentPosition(function (position) {
@@ -87,17 +82,16 @@ function currentlocationWeather() {
       })
   });
 }
+
 currentlocationWeather()
 
 pastSearchHistory()
 
-
 function displayResults() {
 
   if (city !== "") {
-
+    console.log(city)
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
-
     // Here we run our AJAX call to the OpenWeatherMap API
     $.ajax({
       url: queryURL,
@@ -105,6 +99,7 @@ function displayResults() {
     })
       // We store all of the retrieved data inside of an object called "response"
       .then(function (response) {
+        console.log(response)
         var iconcode = response.weather[0].icon;
         var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
@@ -114,7 +109,7 @@ function displayResults() {
         city.append(("<img id='wicon' src='' alt='Weather icon'>"));
         $(".wind").text("Wind Speed: " + response.wind.speed);
         $(".humidity").text("Humidity: " + response.main.humidity + "%");
-        
+
         if (tempkind == "F") {
           $(".temp").text("Temperature (F) " + ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2));
         }
@@ -123,7 +118,7 @@ function displayResults() {
 
       });
 
-// query weather data
+    // query weather data
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
     $.ajax({
       url: queryURL,
@@ -131,14 +126,14 @@ function displayResults() {
     })
       // We store all of the retrieved data inside of an object called "response"
       .then(function (response2) {
-
+        console.log(response2)
         var nextFive = $(".five")
         nextFive.empty()
 
         for (var i = 2; i < response2.list.length; i += 8) {
           var iconcode2 = response2.list[i].weather[0].icon;
           var iconurl2 = "http://openweathermap.org/img/w/" + iconcode2 + ".png";
-          console.log(iconcode2)
+
           $(".five-day").text("Five day forecast:")
 
           var nextFiveCard = $("<div>")
@@ -157,7 +152,6 @@ function displayResults() {
           nextFiveCard.append(("<h6>" + "Humidity: " + response2.list[i].main.humidity + "%"))
 
           nextFive.append(nextFiveCard)
-
         }
       })
   }
