@@ -116,6 +116,8 @@ function displayResults() {
         else { $(".temp").text("Temperature (C) " + (response.main.temp - 273.15).toFixed(2)); }
         $('#wicon').attr('src', iconurl);
 
+      }).catch(err =>{
+        console.log(err)
       });
 
     // query weather data
