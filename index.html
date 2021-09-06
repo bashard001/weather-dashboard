@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Weather Dashboard</title>
     <!-- Bootstrap CSS CDN  -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/normalize.css" />
     <link rel="stylesheet" href="stylesheets/weather.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans" />
@@ -36,10 +37,12 @@
                 <div class="card-body">
                     <!-- Use the search bar to find weather by city name -->
                     <input type="text" class="form-control sds" id="get-weather">
-                    <button type="submit" class="btn btn-default sds" id="run-search"><i class="fa fa-search"></i>
+                    <button type="submit" class="btn btn-primary  m-2" id="run-search"><i class="fa fa-search"></i>
                         Search</button>
-                    <div class="btn btn-primary temptype"> </div>
-                    <div class="search-data"></div>
+                    <div class="row">
+                        <div class="col-12  temptype"> </div>
+                        <div class="col-12 search-data"></div>
+                    </div>
                 </div>
             </div>
             <!-- All weather data will appear here -->
