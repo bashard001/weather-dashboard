@@ -26,7 +26,6 @@ $(".temptype").on("click", function () {
   }
 })
 
-
 function pastSearchHistory() {
   letsGo = []
   var pastSearch = localStorage.getItem("pastSearch")
@@ -121,7 +120,6 @@ function displayResults() {
         $('#wicon').attr('src', iconurl);
 
       });
-
 
 // query weather data
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
