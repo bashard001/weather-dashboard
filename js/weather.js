@@ -9,21 +9,22 @@ let apiRes = ""
 
 
 $(".temptype").on("click", function () {
-  console.log(city)
+
+  let tempD = $(".temp")
+    console.log(tempD[2])
   switch (tempkind) {
     case "F":
       tempkind = "C";
       $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176F" + "</p>")
+      $(".temp").text("Temperature (C) " + Number($(".temp").attr("value")).toFixed(2) )
       break;
     case "C":
       tempkind = "F";
       $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176C" + "</p>")
+      $(".temp").text("Temperature (F) " + (Number($(".temp").attr("value"))* 1.80 + 32).toFixed(2) )
       break;
   }
-  if (city == "") {
-    currentlocationWeather()
-  }
-  else {
+  if (city !== "") {
     displayResults()
   }
 })
@@ -68,16 +69,14 @@ function currentlocationWeather() {
         city.append(("<img id='wicon' src='' alt='Weather icon'>"));
         $(".wind").text("Wind Speed: " + response.wind.speed);
         $(".humidity").text("Humidity: " + response.main.humidity);
+        $(".temp").attr("value", () => response.main.temp - 273.15)
 
         if (tempkind == "F") {
-          $(".temp").attr("value", function(){
-            return ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2)
-          })
-          $(".temp").text("Temperature (F) " +  $(".temp").attr("value"));
+          $(".temp").text("Temperature (F) " + (Number($(".temp").attr("value"))* 1.80 + 32).toFixed(2) );
           $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176C" + "</p>")
         }
         else {
-          $(".temp").text("Temperature (C) " + (response.main.temp - 273.15).toFixed(2));
+          $(".temp").text("Temperature (C) " + Number($(".temp").attr("value")).toFixed(2));
           $(".temptype").html("<p class='btn btn-primary m-0'>" + "Change to &#176F" + "</p>")
         }
         $('#wicon').attr('src', iconurl);
