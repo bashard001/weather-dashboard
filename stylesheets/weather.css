@@ -19,8 +19,11 @@ body{
     margin-bottom: 20px;
     align-items: center;
 }
+.header h6{
+    margin: 0px;
+}
 .text-center{
-    margin-top: 8px;
+    margin: 5px 0px 0px 0px;
 } 
 #start{
     
