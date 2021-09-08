@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Weather Dashboard</title>
@@ -19,47 +20,80 @@
         <h6 style="color: black; font-style: italic;">App by Bashar Daseh</h6>
     </nav>
 
-    <div class="container p-3" id="start">
+    <div class="container mainContent p-3">
+        <div id="start">
+            <div class="row justify-content-end ">
+                <div class="col-12 start"></div>
+                <div class="col-auto ml-auto  temptype"> </div>
+            </div>
+            <!-- Row for Searching Weather Dashboard -->
+            <div class="row p-2">
+                <div class="col-lg-4 card">
+                    <div class="card-header">
+                        <strong>
+                            <i class="fa fa-list-alt"></i> Search for a City
+                        </strong>
+                    </div>
+                    <div class="card-body">
+                        <!-- Use the search bar to find weather by city name -->
+                        <input type="text" class="form-control sds" id="get-weather">
+                        <button type="submit" class="btn btn-primary  m-2" id="run-search"><i class="fa fa-search"></i>
+                            Search</button>
+                        <div class="row">
 
-        <div class="row justify-content-end ">
-            <div class="col-12 start"></div>
-            <div class="col-auto ml-auto  temptype"> </div>
-        </div>
-        <!-- Row for Searching Weather Dashboard -->
-        <div class="row p-2">
-            <div class="col-lg-4 card">
-                <div class="card-header">
-                    <strong>
-                        <i class="fa fa-list-alt"></i> Search for a City
-                    </strong>
-                </div>
-                <div class="card-body">
-                    <!-- Use the search bar to find weather by city name -->
-                    <input type="text" class="form-control sds" id="get-weather">
-                    <button type="submit" class="btn btn-primary  m-2" id="run-search"><i class="fa fa-search"></i>
-                        Search</button>
-                    <div class="row">
-                      
-                        <div class="col-12 search-data"></div>
+                            <div class="col-12 search-data"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- All weather data will appear here -->
-            <div class="col-lg-8 p-0 ">
-                <div class="weather-container">
-                    <div class="city"></div>
-                    <div class="wind"></div>
-                    <div class="humidity"></div>
-                    <div class="temp"></div>
+                <!-- All weather data will appear here -->
+                <div class="col-lg-8 p-0 ">
+                    <div class="weather-container">
+                        <div class="city"></div>
+                        <div class="wind"></div>
+                        <div class="humidity"></div>
+                        <div class="temp"></div>
+                    </div>
                 </div>
+
             </div>
-         
-        </div>
-        <div class="row pt-5">
-            <div class="col-12 mb-4 five-day"></div>
-            <div class="five row"></div>
+            <div class="row pt-5">
+                <div class="col-12 mb-4 five-day"></div>
+                <div class="five row"></div>
+            </div>
         </div>
     </div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-sm-2 offset-1">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="aboutus.html">About</a></li>
+                        <li><a href="#">Sites</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-sm-5 text-center">
+                    <h5>Social</h5>
+                    <a class="btn btn-social-icon btn-instagram" href="http://instagram.com/"><i
+                            class="fa fa-instagram"></i></a>
+                    <a class="btn btn-social-icon btn-facebook" href="http://facebook.com/"><i
+                            class="fa fa-facebook"></i></a>
+                    <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i
+                            class="fa fa-twitter"></i></a>
+                    <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i
+                            class="fa fa-youtube"></i></a>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <a role="button" class="btn btn-link" href="tel:+12065551234"><i class="fa fa-phone"></i>
+                        1-206-555-1234</a><br />
+                    <a role="button" class="btn btn-link" href="mailto:campsites@nucamp.co"><i
+                            class="fa fa-envelope-o"></i> campsites@nucamp.co</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/datetime.js"></script>

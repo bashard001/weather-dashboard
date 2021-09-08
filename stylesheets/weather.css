@@ -25,9 +25,13 @@ body{
 .text-center{
     margin: 5px 0px 0px 0px;
 } 
+.mainContent{
+    height: 80vh;
+}
 #start{
     
     background-color: rgba(255, 255, 255, .8);
+    padding: 10px;
  
 }
 .start p{
